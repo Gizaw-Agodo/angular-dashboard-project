@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="side-nav">
+    <app-sidebar></app-sidebar> 
+  </mat-sidenav>
+
+  <mat-card class="header-container">
+    <div class="left-side">
+      <button mat-icon-button class="menu-icon" (click)="sidenav.toggle()" aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <button mat-icon-button  class="arrow-back" aria-label="Menu">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="search-container">
+        <input type="text" placeholder="Search" class="search-input" />
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+    </div>
+
+    <div class="right-side">
+      <button mat-icon-button>
+        <mat-icon matBadge="3" matBadgeColor="warn">email_outlined</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon matBadge="5" matBadgeSize="large" matBadgeColor="warn">
+          notifications_outlined
+        </mat-icon>
+      </button>
+      <div class="date-picker">
+        <input matInput placeholder="Fiscal Period" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+    </div>
+  </mat-card>
+</mat-sidenav-container>
