@@ -1,0 +1,41 @@
+<mat-card class="employee-summary-container">
+    <p class="table-title">SR & ED Summary</p>
+    <div class="table-header">
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Search Employee"
+          [(ngModel)]="searchQuery"
+          class="search-input"
+        />
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+      <div class="actions-container">
+        <div class="button-container">
+          <button extended (click)="onFilterClick()">
+            Filter
+            <mat-icon>filter_list</mat-icon>
+          </button>
+        </div>
+  
+        <div class="button-container" (click)="onExportClick()">
+          <button extended>
+            Export
+            <mat-icon>download</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- AG Grid Table -->
+    <ag-grid-angular
+      style="width: 100%"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [domLayout]="'autoHeight'"
+      [suppressRowClickSelection]="true"
+      [gridOptions]="gridOptions"
+    ></ag-grid-angular>
+  </mat-card>
+  
