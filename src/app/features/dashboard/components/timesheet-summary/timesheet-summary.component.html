@@ -1,0 +1,24 @@
+<mat-card class="timesheet-container">
+  <p class="timesheet-title">Timesheet Summary</p>
+  <div class="timesheet-summary">
+    <mat-card class="summary-card" *ngFor="let item of timesheetData">
+      <div class="card-title">{{ item.title }}</div>
+      <div class="card-content">
+        <span class="card-number">{{ item.number }}</span>
+        <button
+          extended
+          [ngClass]="
+            item.change > 0
+              ? 'increment button-container'
+              : 'decrement  button-container'
+          "
+        >
+          <mat-icon>{{
+            item.change > 0 ? "arrow_upward" : "arrow_downward"
+          }}</mat-icon>
+          <span class="change-percentage">{{ item.change }}%</span>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</mat-card>
