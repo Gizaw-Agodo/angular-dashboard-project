@@ -1,0 +1,86 @@
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  border-radius: 8px;
+}
+.dashboard-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+
+  .welcome-message {
+    font-size: 1.4rem;
+    color: #404040;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .date-range {
+    font-size: 0.975rem;
+    color: #555;
+    background-color: #eeeded;
+    padding: 4px 8px;
+    border-radius: 20px;
+    margin-top: 5px;
+  }
+}
+
+.reload-button {
+  .reload-icon-button {
+    background-color: #091836;
+    color: #fff;
+    border-radius: 20%;
+    padding: 8px;
+    font-size: 1.25rem;
+  }
+
+  .reload-icon-button:hover {
+    background-color: #0a2149;
+  }
+}
+
+.active-integrations {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: center;
+  margin-top: 10px;
+
+  .integration-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: black;
+    margin-right: 16px;
+  }
+
+ 
+}
+
+.integration-chips {
+  display: flex;
+  gap: 4px;
+}
+
+.integration-chip {
+  font-size: 0.875rem;
+  font-weight: 600;
+  width: 70px;
+  background-color: #c9f3ff !important;
+  color: #091836;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: none !important;
+  padding: 0 !important;
+}
