@@ -1,6 +1,15 @@
-# AngularDashboard
+# Angular Dashboard Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+A responsive and dynamic Angular dashboard that visualizes data through interactive charts, tables, and mock data services. The project includes a clean, user-friendly interface with a fully responsive layout, making it suitable for various screen sizes.
+
+## Features
+
+- **Responsive Design**: Sidebar and header elements adapt for mobile screens using a hamburger menu.
+- **Data Visualization**: Integration of bar charts, pie charts, and tables with mock data for tracking project hours.
+- **Customizable**: Easily extendable with new features like additional charts, widgets, and API data sources.
+- **Mock API Data**: The data for charts and tables is mocked using Angular services, making it easy to simulate live data without a backend.
+- **Angular Material Components**: Utilizes Angular Material for UI components like buttons, inputs, and date pickers.
+
 
 ## Development server
 
