@@ -1,0 +1,12 @@
+.dashboard-card {
+  width: 100%;
+  margin: 4rem 0;
+  padding: 1rem;
+  background-color: white;
+}
+
+.title-header {
+  margin-bottom: 40px;
+  font-size: larger;
+  font-weight: 500;
+}
