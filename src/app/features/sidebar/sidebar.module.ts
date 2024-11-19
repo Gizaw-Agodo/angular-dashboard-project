@@ -9,6 +9,6 @@ import { SharedModule } from '../../shared/shared.module';
 @NgModule({
   declarations: [SidebarComponent, LogoComponent, UserProfileComponent],
   imports: [CommonModule, MatCardModule, SharedModule],
-  exports: [SidebarComponent],
+  exports: [SidebarComponent, UserProfileComponent],
 })
 export class SidebarModule {}

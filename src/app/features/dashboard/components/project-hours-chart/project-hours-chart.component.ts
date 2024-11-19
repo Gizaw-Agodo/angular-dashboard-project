@@ -23,7 +23,7 @@ export class ProjectHoursChartComponent implements OnInit {
           return {
             fill: datum.color,
             stroke: datum.color,
-            strokeWidth: 35,
+            strokeWidth: 5,
             lineDash: [0,2],
           };
         },

@@ -4,6 +4,7 @@
   flex-direction: row;
   border-radius: 0px;
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
   align-items: center;
   box-shadow: none;
@@ -104,8 +105,3 @@
   }
 }
 
-.sidenav {
-  width: 250px;
-  background-color: #ffffff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
