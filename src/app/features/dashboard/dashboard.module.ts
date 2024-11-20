@@ -10,6 +10,8 @@ import { EmployeeSummaryComponent } from './components/employee-summary/employee
 import { AgGridModule } from 'ag-grid-angular';
 import { SredSummaryComponent } from './components/sred-summary/sred-summary.component';
 import { TimesheetSummaryComponent } from './components/timesheet-summary/timesheet-summary.component';
+import { EffectsModule } from '@ngrx/effects';
+import { OverallHoursPieChartEffects } from '../../store/effects/overall-hours-pie-chart.effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { TimesheetSummaryComponent } from './components/timesheet-summary/timesh
     SredSummaryComponent,
     TimesheetSummaryComponent,
   ],
-  imports: [CommonModule, SharedModule, AgChartsModule, AgGridModule],
+  imports: [CommonModule, SharedModule, AgChartsModule, AgGridModule,EffectsModule.forFeature([OverallHoursPieChartEffects]),],
   exports: [DashboardComponent],
 })
 export class DashboardModule {}

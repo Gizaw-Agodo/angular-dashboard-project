@@ -3,10 +3,19 @@
   margin: 4rem 0;
   padding: 1rem;
   background-color: white;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #929191 #d2d2d2;
 }
 
 .title-header {
   margin-bottom: 40px;
   font-size: larger;
   font-weight: 500;
+}
+
+ag-charts {
+  min-width: 700px; 
+  width: auto; 
+  height: 400px;
 }

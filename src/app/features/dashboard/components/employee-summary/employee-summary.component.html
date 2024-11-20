@@ -31,7 +31,7 @@
   <ag-grid-angular
     style="width: 100%"
     class="ag-theme-alpine"
-    [rowData]="rowData"
+    [rowData]="rowData$ | async"
     [columnDefs]="columnDefs"
     [domLayout]="'autoHeight'"
     [suppressRowClickSelection]="true"

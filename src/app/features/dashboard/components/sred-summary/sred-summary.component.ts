@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
-import { DataService } from '../../services/data.service'; 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as SREDTableActions from '../../../../store/actions/sred-table.actions';
+import * as fromSREDTableSelectors from '../../../../store/selectors/sred-table.selectors';
+import { SREDTableData } from '../../../../models/sred-table-data.model';
 
 @Component({
   selector: 'app-sred-summary',
@@ -8,19 +12,19 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./sred-summary.component.css'],
 })
 export class SredSummaryComponent implements OnInit {
-  rowData: any[] = [];
-  searchQuery: string = ''; 
+  rowData$: Observable<SREDTableData[]>;
+  searchQuery: string = '';
 
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.loadSredData();
+  constructor(private store: Store) {
+    // Select data from the store
+    this.rowData$ = this.store.select(
+      fromSREDTableSelectors.selectSREDTableData
+    );
   }
 
-  loadSredData(): void {
-    this.dataService.getSREDTableData().subscribe((data) => {
-      this.rowData = data;
-    });
+  ngOnInit(): void {
+    // Dispatch action to load data
+    this.store.dispatch(SREDTableActions.loadSREDTableData());
   }
 
   // Column Definitions
@@ -28,7 +32,7 @@ export class SredSummaryComponent implements OnInit {
     {
       headerName: 'Name',
       field: 'name',
-      width : 150,
+      width: 150,
       cellRenderer: (params: any) => {
         return `
           <div class="employee-name" style="display: flex; align-items: center;">
@@ -39,34 +43,30 @@ export class SredSummaryComponent implements OnInit {
         `;
       },
     },
-    { headerName: 'Tracking Score', field: 'trackingScore',width:140 },
-    { headerName: 'Expected Hours', field: 'expectedHours' , width:140},
-    { headerName: 'Worked Hours', field: 'workedHours' , width : 140 },
+    { headerName: 'Tracking Score', field: 'trackingScore', width: 140 },
+    { headerName: 'Expected Hours', field: 'expectedHours', width: 140 },
+    { headerName: 'Worked Hours', field: 'workedHours', width: 140 },
     { headerName: 'Tracked Hours', field: 'trackedHours', width: 140 },
-    { headerName: 'New', field: 'new', width : 90 },
-    { headerName: 'Fiber', field: 'fiber', width : 90 },
+    { headerName: 'New', field: 'new', width: 90 },
+    { headerName: 'Fiber', field: 'fiber', width: 90 },
     { headerName: 'FD Test', field: 'fdTest', width: 90 },
     { headerName: 'SR & ED', field: 'srEdHour', width: 100 },
   ];
 
-  // Function to auto-size all columns based on content
-  private autoSizeAllColumns(params: any) {
-    const allColumnIds = params.columnApi.getAllColumns().map((column: any) => column.getId());
-    params.columnApi.autoSizeColumns(allColumnIds);
-  }
-  
-  // Grid options and functionality
+  // Grid Options
   gridOptions: GridOptions = {
     paginationPageSize: 10,
   };
 
   // Handle Filter Button Click
   onFilterClick() {
-    console.log('Filter Clicked');
+    if (this.searchQuery) {
+      console.log(`Filtering with query: ${this.searchQuery}`);
+    }
   }
 
   // Handle Export Button Click
   onExportClick() {
-    console.log('Export Clicked');
+    console.log('Exporting data...');
   }
 }

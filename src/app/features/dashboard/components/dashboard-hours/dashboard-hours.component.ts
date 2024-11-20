@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AgChartOptions } from 'ag-charts-community';
-import { DataService } from '../../services/data.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { OverallHoursBarChartState } from '../../../../store/reducers/overall-hours-bar-chart.reducer';
+import { OverallHoursPieChartState } from '../../../../store/reducers/overall-hours-pie-chart.reducer';
+import * as OverallHoursBarChartActions from '../../../../store/actions/overall-hours-bar-chart.actions';
+import * as OverallHoursPieChartActions from '../../../../store/actions/overall-hours-pie-chart.actions';
+import * as fromBarChartSelectors from '../../../../store/selectors/overall-hours-bar-chart.selectors';
+import * as fromPieChartSelectors from '../../../../store/selectors/overall-hours-pie-chart.selectors';
+import { PieChartData } from '../../../../models/pie-chart-data.model';
+import { BarChartData } from '../../../../models/bar-chart-data.model';
 
 @Component({
   selector: 'app-dashboard-hours',
@@ -8,24 +17,41 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./dashboard-hours.component.css'],
 })
 export class DashboardHoursComponent implements OnInit {
-  pieChartData: any[] = [];
-  barChartData: any[] = [];
+  // State observables
+  pieChartData$: Observable<PieChartData[]>;
+  barChartData$: Observable<BarChartData[]>;
 
+  // Chart configurations
   pieChartOptions: AgChartOptions = {};
   barChartOptions: AgChartOptions = {};
 
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.loadPieChartData();
-    this.loadBarChartData();
+  constructor(
+    private store: Store<{
+      overallHoursBarChart: OverallHoursBarChartState;
+      overallHoursPieChart: OverallHoursPieChartState;
+    }>
+  ) {
+    this.pieChartData$ = this.store.select(
+      fromPieChartSelectors.selectPieChartData
+    );
+    this.barChartData$ = this.store.select(
+      fromBarChartSelectors.selectBarChartData
+    );
   }
 
-  loadPieChartData(): void {
-    this.dataService.getPieChartData().subscribe((data) => {
-      this.pieChartData = data;
+  ngOnInit(): void {
+    // Dispatch actions to load data
+    this.store.dispatch(
+      OverallHoursPieChartActions.loadOverallHoursPieChartData()
+    );
+    this.store.dispatch(
+      OverallHoursBarChartActions.loadOverallHoursBarChartData()
+    );
+
+    // Subscribe to state and configure chart options
+    this.pieChartData$.subscribe((data) => {
       this.pieChartOptions = {
-        data: this.pieChartData,
+        data,
         series: [
           {
             type: 'donut',
@@ -50,14 +76,10 @@ export class DashboardHoursComponent implements OnInit {
         ],
       };
     });
-  }
 
-  loadBarChartData(): void {
-    this.dataService.getBarChartData().subscribe((data) => {
-      this.barChartData = data;
-
+    this.barChartData$.subscribe((data) => {
       this.barChartOptions = {
-        data: this.barChartData,
+        data,
         series: [
           {
             type: 'bar',

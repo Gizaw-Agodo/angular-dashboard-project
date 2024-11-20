@@ -81,15 +81,9 @@
   display: none;
 }
 
-
-
 @media (max-width: 768px) {
   .header-container {
     padding: 10px;
-  }
-
-  .menu-icon {
-    display: inline-flex;
   }
 
   .arrow-back {
@@ -97,7 +91,7 @@
   }
 
   .search-container {
-    width: 60%;
+    width: 100%;
   }
 
   .date-picker {

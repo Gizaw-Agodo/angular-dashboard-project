@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
-import { DataService } from '../../services/data.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as EmployeeSummaryActions from '../../../../store/actions/employee-summary-table.actions';
+import * as fromEmployeeSummarySelectors from '../../../../store/selectors/employee-summary-table.selectors';
+import { EmployeeTableData } from '../../../../models/employee-table-data.model';
 
 @Component({
   selector: 'app-employee-summary',
@@ -8,19 +12,17 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./employee-summary.component.css'],
 })
 export class EmployeeSummaryComponent implements OnInit {
-  rowData: any[] = [];
-  searchQuery: string = ''; 
+  rowData$: Observable<EmployeeTableData[]>;
+  searchQuery: string = '';
 
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.loadEmployeeData();
+  constructor(private store: Store) {
+    this.rowData$ = this.store.select(
+      fromEmployeeSummarySelectors.selectEmployeeSummaryTableData
+    );
   }
 
-  loadEmployeeData(): void {
-    this.dataService.getEmployeeTableData().subscribe((data) => {
-      this.rowData = data;
-    });
+  ngOnInit(): void {
+    this.store.dispatch(EmployeeSummaryActions.loadEmployeeSummaryTableData());
   }
 
   // Column Definitions
@@ -47,23 +49,7 @@ export class EmployeeSummaryComponent implements OnInit {
   // Grid options and functionality
   gridOptions: GridOptions = {
     paginationPageSize: 10,
-    // onFirstDataRendered: (params) => {
-    //   params.api.sizeColumnsToFit();
-    // },
-
-    onGridReady: (params) => {
-      this.autoSizeAllColumns(params);
-    },
-    onFirstDataRendered: (params) => {
-      this.autoSizeAllColumns(params);
-    },
   };
-
-  // Function to auto-size all columns based on content
-  private autoSizeAllColumns(params : any) {
-    const allColumnIds = params.columnApi.getAllColumns().map((column:any) => column.getId());
-    params.columnApi.autoSizeColumns(allColumnIds);
-  }
 
   // Handle Filter Button Click
   onFilterClick() {
