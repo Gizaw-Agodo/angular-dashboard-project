@@ -1,7 +1,7 @@
 .dashboard-header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content:center;
   align-items: start;
   border-radius: 8px;
 }
@@ -11,7 +11,7 @@
   align-items: center;
   padding: 10px 20px;
   border-radius: 8px;
-  width: 100%;
+  width: 95%;
 }
 
 .welcome-section {

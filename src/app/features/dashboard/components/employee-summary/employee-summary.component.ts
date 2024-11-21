@@ -39,11 +39,12 @@ export class EmployeeSummaryComponent implements OnInit {
           </div>
         `;
       },
+      width : 140
     },
-    { headerName: 'Time Sheet Expected', field: 'timeSheetExpected' },
-    { headerName: 'Unconfirmed Time Sheet', field: 'unconfirmedTimeSheet' },
-    { headerName: 'Confirmed Time Sheet', field: 'confirmedTimeSheet' },
-    { headerName: 'Missing Time Sheet', field: 'missingTimeSheet' },
+    { headerName: 'Time Sheet Expected', field: 'timeSheetExpected', width: 175 },
+    { headerName: 'Unconfirmed Time Sheet', field: 'unconfirmedTimeSheet' , width: 175 },
+    { headerName: 'Confirmed Time Sheet', field: 'confirmedTimeSheet', width: 175  },
+    { headerName: 'Missing Time Sheet', field: 'missingTimeSheet' , width: 155 },
   ];
 
   // Grid options and functionality

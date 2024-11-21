@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AgCartesianChartOptions } from 'ag-charts-community';
 import { ProjectDataType } from '../../../../models/project-data.model';
 import { Observable } from 'rxjs';
@@ -14,45 +14,69 @@ import { AppState } from '../../../../store/store';
 })
 export class ProjectHoursChartComponent implements OnInit {
   projectData: ProjectDataType[] = [];
-  // State observables
   projectHoursData$: Observable<ProjectDataType[]>;
+
+  screenWidth: number = window.innerWidth; 
+
+  projectHoursChartOptions: AgCartesianChartOptions = this.createChartOptions(
+    []
+  );
 
   constructor(private store: Store<AppState>) {
     this.projectHoursData$ = this.store.select(selectProjectBarChartData);
   }
 
-  projectHoursChartOptions: AgCartesianChartOptions = {
-    data: [],
-    series: [
-      {
-        type: 'bar',
-        xKey: 'project',
-        yKey: 'hours',
-        itemStyler: (params: any) => {
-          const datum = params.datum;
-          return {
-            fill: datum.color,
-            stroke: datum.color,
-            strokeWidth: 35,
-            lineDash: [0, 2],
-          };
-        },
-      },
-    ],
-    legend: {
-      enabled: false,
-    },
-  };
-
   ngOnInit(): void {
-    // Dispatch actions to load data
     this.store.dispatch(loadProjectHoursBarChartData());
+
     this.projectHoursData$.subscribe((data) => {
       this.projectData = data;
-      this.projectHoursChartOptions = {
-        ...this.projectHoursChartOptions,
-        data: this.projectData,
-      };
+      this.updateChartOptions();
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.screenWidth = event.target.innerWidth;
+    this.updateChartOptions();
+  }
+
+  private createChartOptions(data: ProjectDataType[]): AgCartesianChartOptions {
+    let dynamicStrokeWidth: number;
+
+    if (this.screenWidth > 850) {
+      dynamicStrokeWidth = 35;
+    } else if (this.screenWidth > 768) {
+      dynamicStrokeWidth = 25;
+    } else {
+      dynamicStrokeWidth = 15;
+    }
+
+    return {
+      data,
+      series: [
+        {
+          type: 'bar',
+          xKey: 'project',
+          yKey: 'hours',
+          itemStyler: (params: any) => {
+            const datum = params.datum;
+            return {
+              fill: datum.color,
+              stroke: datum.color,
+              strokeWidth: dynamicStrokeWidth,
+              lineDash: [0, 2],
+            };
+          },
+        },
+      ],
+      legend: {
+        enabled: false,
+      },
+    };
+  }
+
+  private updateChartOptions(): void {
+    this.projectHoursChartOptions = this.createChartOptions(this.projectData);
   }
 }

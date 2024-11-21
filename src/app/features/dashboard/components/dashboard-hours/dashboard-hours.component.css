@@ -2,14 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  gap: 20px;
+  /* flex-direction: row; */
+  gap: 25px;
   background-color: white;
 }
 
 .card-container {
   width: 100%;
-  /* margin: 4rem 0; */
   padding: 1rem;
   background-color: white;
   padding-bottom: 30px;
@@ -52,5 +51,11 @@ h3 {
 @media (max-width: 768px) {
   .hours-container{
     flex-wrap: wrap;
+  }
+  .bar-chart-container {
+    width: 100%;
+  }
+  .pie-chart-container {
+    width: 100%;
   }
 }

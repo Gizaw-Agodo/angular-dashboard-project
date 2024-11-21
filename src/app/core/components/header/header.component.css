@@ -53,9 +53,9 @@
 
 .search-icon {
   position: absolute;
-  right: -35px;
+  right: -40px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   color: #555;
   font-size: 18px;
   pointer-events: none;

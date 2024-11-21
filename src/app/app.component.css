@@ -19,6 +19,10 @@ app-sidebar {
   color: white;
   height: 100vh;
   position: fixed;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f6f6f6 #f1f1f1;
+  background-color: white;
 }
 
 .main-content {

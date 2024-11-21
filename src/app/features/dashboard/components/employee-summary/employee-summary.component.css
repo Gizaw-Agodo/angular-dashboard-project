@@ -32,14 +32,13 @@
 
 .search-icon {
   position: absolute;
-  right: -35px;
+  right: -45px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   color: #555;
   font-size: 18px;
   pointer-events: none;
 }
-
 
 
 .employee-name {
@@ -78,6 +77,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2;
   width: 100px;
 }
 
@@ -86,4 +86,10 @@
   justify-content: center;
   align-items: center;
   gap: 2;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    width: 30%;
+  }
 }
