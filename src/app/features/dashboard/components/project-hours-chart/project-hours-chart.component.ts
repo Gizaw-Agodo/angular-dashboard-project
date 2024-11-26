@@ -49,7 +49,7 @@ export class ProjectHoursChartComponent implements OnInit {
     } else if (this.screenWidth > 768) {
       dynamicStrokeWidth = 25;
     } else {
-      dynamicStrokeWidth = 15;
+      dynamicStrokeWidth = 12;
     }
 
     return {
