@@ -1,0 +1,46 @@
+.projects-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-top: 40px;
+  }
+  
+  .project-table-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .ag-theme-alpine .ag-header-cell {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .ag-theme-alpine .ag-header-cell-text {
+    color: #333;
+  }
+  
+  .ag-theme-alpine .ag-cell {
+    padding: 10px;
+  }
+  
+  /* Custom tooltip styling */
+  .ag-theme-alpine .ag-tooltip {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    max-width: 300px; /* Set the maximum width for the tooltip */
+    white-space: normal; /* Allow the text to wrap within the tooltip */
+    word-wrap: break-word; /* Ensure long words break correctly */
+  }
+  
+  @media (max-width: 768px) {
+  }
+  

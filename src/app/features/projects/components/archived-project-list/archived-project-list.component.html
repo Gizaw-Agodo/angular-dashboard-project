@@ -1,0 +1,27 @@
+<mat-card class="projects-container">
+    <mat-toolbar color="primary" class="project-table-header">
+      <span>Archived Projects</span>
+      <span class="spacer"></span>
+      <div class="button-container">
+        <button mat-raised-button color="accent" (click)="onExportClick()">
+          Export CSV
+        </button>
+        <button mat-raised-button color="primary" routerLink="/projects">
+          Back to Projects
+        </button>
+      </div>
+    </mat-toolbar>
+  
+    <ag-grid-angular
+      style="width: 100%"
+      class="ag-theme-alpine"
+      [rowData]="rowData$ | async"
+      [columnDefs]="columnDefs"
+      [domLayout]="'autoHeight'"
+      [suppressRowClickSelection]="true"
+      [gridOptions]="gridOptions"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </mat-card>
+  
