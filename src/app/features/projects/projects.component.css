@@ -1,0 +1,43 @@
+.container-card {
+  background-color: white;
+  padding: 10px;
+  box-shadow: none;
+  border: 1px solid #ddd;
+}
+.projects-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 26px;
+  gap: 16px;
+  background-color: white;
+}
+
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.client-name {
+  color: #ffcc00;
+  font-size: 1.2rem;
+}
+
+.fiscal-period-selector {
+  width: 150px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+button {
+  white-space: nowrap;
+}
