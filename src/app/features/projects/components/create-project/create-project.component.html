@@ -1,0 +1,69 @@
+<div class="project-form-container">
+    <mat-card>
+      <mat-card-title class="card-title">
+        <mat-icon>assignment</mat-icon>
+        {{ isEditMode ? 'Edit Project' : 'Create Project' }}
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+          <div class="form-grid">
+            <!-- Project Name -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Project Name</mat-label>
+              <input matInput formControlName="name" required />
+              <mat-error *ngIf="projectForm.get('name')?.invalid">Project name is required</mat-error>
+            </mat-form-field>
+  
+            <!-- Client Name -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Client Name</mat-label>
+              <input matInput formControlName="createdBy" required />
+              <mat-error *ngIf="projectForm.get('createdBy')?.invalid">Client name is required</mat-error>
+            </mat-form-field>
+  
+            <!-- Integration -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Integration</mat-label>
+              <input matInput formControlName="integration" />
+              <mat-error *ngIf="projectForm.get('integration')?.invalid">Integration is required</mat-error>
+            </mat-form-field>
+
+  
+            <!-- Hours -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Hours</mat-label>
+              <input matInput type="number" formControlName="hours" />
+            </mat-form-field>
+  
+            <!-- Time Records -->
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Time Records</mat-label>
+              <input matInput type="number" formControlName="timeRecords" />
+            </mat-form-field>
+
+               <!-- Included -->
+               <mat-checkbox formControlName="included" class="form-field">
+                Include in Reports
+              </mat-checkbox>
+  
+            <!-- Description -->
+            <mat-form-field appearance="outline" class="form-field description-field">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+          </div>
+  
+          <!-- Actions -->
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="projectForm.invalid">
+              {{ isEditMode ? 'Update Project' : 'Create Project' }}
+            </button>
+            <button mat-raised-button color="warn" type="button" (click)="onCancel()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
