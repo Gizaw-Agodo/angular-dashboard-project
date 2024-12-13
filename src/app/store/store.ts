@@ -21,6 +21,8 @@ import {
 } from './reducers/employee-summary-table.reducer';
 import { SREDEffects } from './effects/sred-table.effects';
 import { sredTableReducer, SREDTableState } from './reducers/sred-table.reducer';
+import { projectReducer, ProjectState } from '../features/projects/store/project.reducer';
+import { ProjectEffects } from '../features/projects/store/project.effects';
 
 // Define the overall application state
 export interface AppState {
@@ -28,6 +30,7 @@ export interface AppState {
   overallHoursPieChart: OverallHoursPieChartState;
   projectHoursBarChart: ProjectHoursBarChartState;
   employeeSummaryTable: EmployeeSummaryTableState;
+  projects:ProjectState;
 }
 
 // Map reducers to their corresponding state slices
@@ -37,6 +40,8 @@ export interface AppStore {
   projectHoursBarChart: ActionReducer<ProjectHoursBarChartState, Action>;
   employeeSummaryTable: ActionReducer<EmployeeSummaryTableState, Action>;
   sredTable : ActionReducer<SREDTableState, Action>;
+  project : ActionReducer<ProjectState, Action>;
+
 }
 
 // Register the reducers
@@ -45,7 +50,8 @@ export const appStore: AppStore = {
   overallHoursPieChart: overallHoursPieChartReducer,
   projectHoursBarChart: projectHoursBarChartReducer,
   employeeSummaryTable: employeeSummaryTableReducer,
-  sredTable : sredTableReducer
+  sredTable : sredTableReducer,
+  project : projectReducer
 };
 
 // Register the effects
@@ -55,4 +61,5 @@ export const appEffects = [
   ProjectHoursBarChartEffects,
   EmployeeSummaryTableEffects,
   SREDEffects,
+  ProjectEffects,
 ];
