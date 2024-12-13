@@ -1,0 +1,36 @@
+<mat-card class="projects-container">
+  <mat-toolbar color="primary" class="project-table-header">
+    <span>Project List</span>
+    <span class="spacer"></span>
+    <div class="button-container">
+      <!-- CSV Upload Button -->
+      <input
+        type="file"
+        accept=".csv"
+        (change)="handleFileInput($event)"
+        hidden
+        #csvInput
+      />
+      <button mat-raised-button color="accent" (click)="csvInput.click()">
+        + Add CSV
+      </button>
+
+      <!-- Export to CSV Button -->
+      <button mat-raised-button color="primary" (click)="onExportClick()">
+        Export to CSV
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <ag-grid-angular
+    style="width: 100%"
+    class="ag-theme-alpine"
+    [rowData]="rowData$ | async"
+    [columnDefs]="columnDefs"
+    [domLayout]="'autoHeight'"
+    [suppressRowClickSelection]="true"
+    [gridOptions]="gridOptions"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+</mat-card>
