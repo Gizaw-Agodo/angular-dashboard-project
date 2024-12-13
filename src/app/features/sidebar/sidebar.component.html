@@ -2,37 +2,47 @@
   <app-logo></app-logo>
   <app-user-profile></app-user-profile>
 
+  <!-- General Navigation -->
   <mat-expansion-panel
     *ngFor="let item of generalNavigation"
     [expanded]="item.expanded"
     class="expansion-pannel"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> {{ item.name }} </mat-panel-title>
+      <mat-panel-title>{{ item.name }}</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item *ngFor="let subItem of item.subItems">
+      <mat-list-item
+        *ngFor="let subItem of item.subItems"
+        (click)="navigate(subItem.path)"
+        [class.active-item]="currentActivePath === subItem.path"
+      >
         <div class="list-item-container">
           <mat-icon matListIcon>{{ subItem.icon }}</mat-icon>
-          <span>{{ subItem.name }} </span>
+          <span>{{ subItem.name }}</span>
         </div>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>
 
+  <!-- Tools -->
   <mat-expansion-panel
     *ngFor="let item of tools"
     [expanded]="item.expanded"
     class="expansion-pannel"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> {{ item.name }} </mat-panel-title>
+      <mat-panel-title>{{ item.name }}</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item *ngFor="let subItem of item.subItems">
+      <mat-list-item
+        *ngFor="let subItem of item.subItems"
+        (click)="navigate(subItem.path)"
+        [class.active-item]="currentActivePath === subItem.path"
+      >
         <div class="list-item-container">
           <mat-icon matListIcon>{{ subItem.icon }}</mat-icon>
-          <span class="list-item-text">{{ subItem.name }}</span>
+          <span>{{ subItem.name }}</span>
         </div>
       </mat-list-item>
     </mat-list>

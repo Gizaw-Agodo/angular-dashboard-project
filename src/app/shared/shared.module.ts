@@ -36,15 +36,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
-
-import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const materialModules: any[] = [
-  BrowserModule,
   MatFormFieldModule,
-  BrowserAnimationsModule,
   DragDropModule,
   MatAutocompleteModule,
   MatDatepickerModule,
@@ -87,7 +82,7 @@ const materialModules: any[] = [
   FormsModule,
 ];
 
-const otherModules: any[] = [LayoutModule, CommonModule, ReactiveFormsModule];
+const otherModules: any[] = [ ReactiveFormsModule];
 
 @NgModule({
   declarations: [],

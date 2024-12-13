@@ -1,39 +1,52 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
+  currentActivePath: string = ''
+  constructor(private router: Router) {}
 
+  generalNavigation = [
+    {
+      name: 'General',
+      icon: 'home',
+      expanded: true,
+      subItems: [
+        { name: 'Dashboard', icon: 'home', path: '' },
+        { name: 'Projects', icon: 'work_outline', path: '/projects' },
+        { name: 'Navigation 3', icon: 'description', path: '/navigation-3' },
+        { name: 'Navigation 4', icon: 'people', path: '/navigation-4' },
+      ],
+    },
+  ];
 
-    generalNavigation = [
-        {
-          name: 'General',
-          icon: 'home',
-          expanded: true,
-          subItems: [
-            { name: 'Overview', icon: 'home' },
-            { name: 'Navigation 2', icon: 'timeline' },
-            { name: 'Navigation 3', icon: 'description' },
-            { name: 'Navigation 4', icon: 'people' },
-          ],
-        },
-      ];
-    
-      // Tools List with Nested Items
-      tools = [
-        {
-          name: 'Tools',
-          icon: 'build',
-          expanded: true,
-          subItems: [
-            { name: 'Settings', icon: 'settings' },
-            { name: 'Help', icon: 'help_outline' },
-            { name: 'Dark Mode', icon: 'dark_mode' },
-          ],
-        },
-      ];
+  tools = [
+    {
+      name: 'Tools',
+      icon: 'build',
+      expanded: true,
+      subItems: [
+        { name: 'Settings', icon: 'settings', path: '/settings' },
+        { name: 'Help', icon: 'help_outline', path: '/help' },
+        { name: 'Dark Mode', icon: 'dark_mode', path: '/dark-mode' },
+      ],
+    },
+  ];
 
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentActivePath = event.urlAfterRedirects; 
+      }
+    });
+  }
+
+  navigate(path: string) {
+    this.currentActivePath = path;
+    this.router.navigate([path]);
+  }
 }

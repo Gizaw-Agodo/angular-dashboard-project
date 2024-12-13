@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar.component';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../../shared/shared.module';
 import { MobileSidebarComponent } from './components/mobile-sidebar/mobile-sidebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { MobileSidebarComponent } from './components/mobile-sidebar/mobile-sideb
     UserProfileComponent,
     MobileSidebarComponent,
   ],
-  imports: [CommonModule, MatCardModule, SharedModule],
+  imports: [CommonModule, MatCardModule, SharedModule, RouterModule],
   exports: [SidebarComponent, UserProfileComponent, MobileSidebarComponent],
 })
 export class SidebarModule {}
