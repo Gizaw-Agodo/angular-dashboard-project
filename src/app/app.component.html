@@ -22,26 +22,10 @@
         </div>
 
         <div class="body-content">
-          <app-dashboard></app-dashboard>
+          <router-outlet></router-outlet>
+          <!-- <app-dashboard></app-dashboard> -->
         </div>
       </div>
     </div>
-    <!-- <div class="main-content">
-      <div class="header-container">
-        <button
-          class="menu-icon"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          aria-label="Menu"
-        >
-          <mat-icon>menu</mat-icon>
-        </button>
-        <app-header></app-header>
-      </div>
-
-      <div class="body-content">
-        <app-dashboard></app-dashboard>
-      </div>
-    </div> -->
   </mat-drawer-content>
 </mat-drawer-container>

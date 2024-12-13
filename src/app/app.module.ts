@@ -8,6 +8,8 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { appEffects, appStore } from './store/store';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,6 +20,8 @@ import { appEffects, appStore } from './store/store';
     SharedModule,
     SidebarModule,
     DashboardModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers : [],
   bootstrap: [AppComponent],
