@@ -11,10 +11,6 @@
   <mat-sidenav-content>
     <mat-card class="header-container">
       <div class="left-side">
-        <!-- <button mat-icon-button class="menu-icon" (click)="sidenav.toggle()" aria-label="Menu">
-          <mat-icon>menu</mat-icon>
-        </button> -->
-
         <button mat-icon-button class="arrow-back" aria-label="Back">
           <mat-icon>arrow_back</mat-icon>
         </button>
@@ -34,13 +30,25 @@
             notifications_outlined
           </mat-icon>
         </button>
-        <div class="date-picker">
-          <input matInput placeholder="Fiscal Period" />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </div>
+
+        <!-- date picker -->
+        <mat-form-field appearance="outline" class="date-picker">
+          <mat-label>Fiscal Period</mat-label>
+          <mat-date-range-input [rangePicker]="picker" [formGroup]="range">
+            <input
+              matStartDate
+              placeholder="Start Date"
+              formControlName="start"
+            />
+            <input matEndDate placeholder="End Date" formControlName="end" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
       </div>
     </mat-card>
   </mat-sidenav-content>
-  
 </mat-sidenav-container>

@@ -22,7 +22,11 @@
         </div>
 <!-- linting fix change -->
         <div class="body-content">
-          <router-outlet></router-outlet>
+          <div *ngIf="loading$ | async" class="spinner-container">
+            <mat-progress-spinner color="primary" mode="indeterminate">
+            </mat-progress-spinner>
+          </div>
+          <router-outlet *ngIf="(loading$ | async) === false"></router-outlet>
           <!-- <app-dashboard></app-dashboard> -->
         </div>
       </div>

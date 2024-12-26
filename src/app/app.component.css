@@ -60,6 +60,13 @@ app-sidebar {
   display: none;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;

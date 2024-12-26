@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { Store } from '@ngrx/store';
+import * as CommonActions from '../../../store/common.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit{
   searchTerm = '';
+  
+  constructor(private store: Store) {}
 
   onSearch() {
     console.log('Searching for:', this.searchTerm);
@@ -40,5 +47,29 @@ export class HeaderComponent {
       ],
     },
   ];
-  
+
+  fiscalPeriod: { start: Date | null; end: Date | null } = {
+    start: null,
+    end: null,
+  };
+
+  readonly range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+  ngOnInit(): void {
+
+    const currentDate = new Date();
+    const nextYearDate = new Date();
+    nextYearDate.setFullYear(currentDate.getFullYear() + 1);
+    this.range.setValue({ start: currentDate, end: nextYearDate });
+
+    this.range.valueChanges.subscribe((values) => {
+      const { start, end } = values;
+      if (start && end ) {
+        this.store.dispatch(CommonActions.setFiscalPeriod({ start, end }));
+      }
+    });
+  }
 }
