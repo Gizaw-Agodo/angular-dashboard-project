@@ -13,7 +13,7 @@ import { SREDTableData } from '../../../../models/sred-table-data.model';
 })
 export class SredSummaryComponent implements OnInit {
   rowData$: Observable<SREDTableData[]>;
-  searchQuery: string = '';
+  searchQuery = '';
 
   constructor(private store: Store) {
     // Select data from the store
