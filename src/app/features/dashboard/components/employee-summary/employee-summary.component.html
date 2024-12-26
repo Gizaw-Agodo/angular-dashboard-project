@@ -18,7 +18,13 @@
         </button>
       </div>
 
-      <div class="button-container" (click)="onExportClick()">
+      <div
+        class="button-container"
+        (click)="onExportClick()"
+        (keydown)="onExportClick()"
+        (keyup)="onExportClick()"
+        tabindex="0"
+      >
         <button extended>
           Export
           <mat-icon>download</mat-icon>

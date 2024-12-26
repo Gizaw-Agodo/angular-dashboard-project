@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -6,8 +6,8 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {
-  currentActivePath: string = ''
+export class SidebarComponent implements OnInit {
+  currentActivePath = ''
   constructor(private router: Router) {}
 
   generalNavigation = [

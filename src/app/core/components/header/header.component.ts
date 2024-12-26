@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  searchTerm: string = '';
+  searchTerm = '';
 
   onSearch() {
     console.log('Searching for:', this.searchTerm);

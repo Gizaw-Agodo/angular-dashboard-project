@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ColDef, GridOptions, GridApi } from 'ag-grid-community';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as ProjectActions from '../../store/project.actions';
 import * as fromProjectSelectors from '../../store/project.selectors';
-import { Router } from '@angular/router';
 import { Project } from '../../models/project.model';
-import { ActionButtonsComponent } from '../action-buttons/action-buttons.component';
 import { ArchiveActionButtonsComponent } from '../archive-action-buttons/archive-action-buttons.component';
 
 @Component({
@@ -16,10 +14,10 @@ import { ArchiveActionButtonsComponent } from '../archive-action-buttons/archive
 })
 export class ArchivedProjectListComponent implements OnInit {
   rowData$: Observable<Project[]>;
-  searchQuery: string = '';
+  searchQuery = '';
   private gridApi!: GridApi;
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store) {
     this.rowData$ = this.store.select(
       fromProjectSelectors.selectAllArchivedProjects
     ); // Select archived projects instead
