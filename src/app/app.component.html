@@ -26,7 +26,7 @@
             <mat-progress-spinner color="primary" mode="indeterminate">
             </mat-progress-spinner>
           </div>
-          <router-outlet *ngIf="!(loading$ | async)"></router-outlet>
+          <router-outlet *ngIf="(loading$ | async) === false"></router-outlet>
           <!-- <app-dashboard></app-dashboard> -->
         </div>
       </div>

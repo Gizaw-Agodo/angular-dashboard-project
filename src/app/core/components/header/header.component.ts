@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import * as CommonActions from '../../../store/common.actions';
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   searchTerm = '';
   
   constructor(private store: Store) {}

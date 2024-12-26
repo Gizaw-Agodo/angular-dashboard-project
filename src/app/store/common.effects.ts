@@ -17,7 +17,7 @@ export class CommonEffects {
             map(
               () => CommonActions.setFiscalSuccess({ ...action }) 
             ),
-            catchError((error) => of())
+            catchError(() => of())
           )
         )
       )

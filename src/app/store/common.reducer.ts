@@ -23,7 +23,7 @@ export interface CommonState {
 export const commonReducer = createReducer(
   initialCommonState,
   
-  on(CommonActions.setFiscalPeriod, (state, payload) => ({
+  on(CommonActions.setFiscalPeriod, (state) => ({
     ...state,
     loading: true,
   })),
