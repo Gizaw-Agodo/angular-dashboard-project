@@ -13,7 +13,7 @@ import { EmployeeTableData } from '../../../../models/employee-table-data.model'
 })
 export class EmployeeSummaryComponent implements OnInit {
   rowData$: Observable<EmployeeTableData[]>;
-  searchQuery: string = '';
+  searchQuery = '';
 
   constructor(private store: Store) {
     this.rowData$ = this.store.select(

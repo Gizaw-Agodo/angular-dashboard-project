@@ -36,7 +36,7 @@ export class ArchiveActionButtonsComponent implements ICellRendererAngularComp {
     this.onUnarchiveCallback = params.onUnarchive;
   }
 
-  refresh(params: ICellRendererParams): boolean {
+  refresh(): boolean {
     return true;
   }
 

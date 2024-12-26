@@ -7,7 +7,6 @@ import { PROJECTS_MOCK_DATA } from '../../../mock-data/project.mock';
   providedIn: 'root',
 })
 export class ProjectService {
-  constructor() {}
 
   // Fetch all projects
   getProjects(): Observable<Project[]> {
@@ -27,8 +26,9 @@ export class ProjectService {
 
   // Update an existing project
   updateProject(project: Project): Observable<Project> {
-    const index = PROJECTS_MOCK_DATA.findIndex((p) => p.id === project.id);
+    // const index = PROJECTS_MOCK_DATA.findIndex((p) => p.id === project.id);
     // do the backend staff
+    
     return of(project);
   }
 
@@ -59,7 +59,8 @@ export class ProjectService {
   }
 
   importProjects(projects: Project[]): Observable<any> {
+
     // return this.http.post('/api/import-projects', projects);
-    return of([]);
+    return of(projects);
   }
 }

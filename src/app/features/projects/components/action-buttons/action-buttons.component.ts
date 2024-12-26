@@ -45,7 +45,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     this.onArchiveCallback = params.onArchive;
   }
 
-  refresh(params: ICellRendererParams): boolean {
+  refresh(): boolean {
     return true;
   }
 

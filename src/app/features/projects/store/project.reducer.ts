@@ -122,7 +122,7 @@ export const projectReducer = createReducer(
   })),
 
   // Unarchive Project
-  on(ProjectActions.unarchiveProject, (state, { id }) => ({
+  on(ProjectActions.unarchiveProject, (state, ) => ({
     ...state,
     loading: true,
     status: 'idle',
@@ -147,7 +147,7 @@ export const projectReducer = createReducer(
   })),
 
   // archive project
-  on(ProjectActions.archiveProject, (state, { id }) => ({
+  on(ProjectActions.archiveProject, (state) => ({
     ...state,
     loading: true,
     status: 'idle',
@@ -175,7 +175,7 @@ export const projectReducer = createReducer(
   })),
 
   // Handle imported CSV projects
-  on(ProjectActions.importCsvProjects, (state, { projects }) => ({
+  on(ProjectActions.importCsvProjects, (state) => ({
     ...state,
     loading: true,
     status: 'idle',

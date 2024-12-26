@@ -16,7 +16,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 })
 export class ProjectListComponent implements OnInit {
   rowData$: Observable<Project[]>;
-  searchQuery: string = '';
+  searchQuery = '';
   private gridApi!: GridApi;
 
   constructor(

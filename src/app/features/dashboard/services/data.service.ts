@@ -16,7 +16,6 @@ import { PROJECT_SUMMARY_DATA } from '../../../mock-data/project-summary.mock';
   providedIn: 'root',
 })
 export class DataService {
-  constructor() {}
 
   getPieChartData(): Observable<PieChartData[]> {
     return of(PIE_CHART_DATA);

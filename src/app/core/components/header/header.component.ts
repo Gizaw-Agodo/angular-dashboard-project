@@ -12,7 +12,7 @@ import * as CommonActions from '../../../store/common.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  searchTerm: string = '';
+  searchTerm = '';
   
   constructor(private store: Store) {}
 
