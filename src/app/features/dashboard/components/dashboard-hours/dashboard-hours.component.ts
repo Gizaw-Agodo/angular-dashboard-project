@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { OverallHoursBarChartState } from '../../../../store/reducers/overall-hours-bar-chart.reducer';
-import { OverallHoursPieChartState } from '../../../../store/reducers/overall-hours-pie-chart.reducer';
 import * as OverallHoursBarChartActions from '../../../../store/actions/overall-hours-bar-chart.actions';
 import * as OverallHoursPieChartActions from '../../../../store/actions/overall-hours-pie-chart.actions';
 import * as fromBarChartSelectors from '../../../../store/selectors/overall-hours-bar-chart.selectors';
 import * as fromPieChartSelectors from '../../../../store/selectors/overall-hours-pie-chart.selectors';
+import * as fromCommonSelectors from '../../../../store/common.selectors';
 import { PieChartData } from '../../../../models/pie-chart-data.model';
 import { BarChartData } from '../../../../models/bar-chart-data.model';
 
@@ -20,23 +19,31 @@ export class DashboardHoursComponent implements OnInit {
   // State observables
   pieChartData$: Observable<PieChartData[]>;
   barChartData$: Observable<BarChartData[]>;
+  fiscalLoading$: Observable<boolean>;
 
   // Chart configurations
   pieChartOptions: AgChartOptions = {};
   barChartOptions: AgChartOptions = {};
 
-  constructor(
-    private store: Store<{
-      overallHoursBarChart: OverallHoursBarChartState;
-      overallHoursPieChart: OverallHoursPieChartState;
-    }>
-  ) {
+  pieChartLoading$: Observable<boolean>;
+  barChartLoading$: Observable<boolean>;
+
+  constructor(private store: Store) {
+    this.pieChartLoading$ = this.store.select(
+      fromPieChartSelectors.selectPieChartLoading
+    );
+    this.barChartLoading$ = this.store.select(
+      fromBarChartSelectors.selectBarChartLoading
+    );
+
     this.pieChartData$ = this.store.select(
       fromPieChartSelectors.selectPieChartData
     );
     this.barChartData$ = this.store.select(
       fromBarChartSelectors.selectBarChartData
     );
+
+    this.fiscalLoading$ = this.store.select(fromCommonSelectors.selectLoading);
   }
 
   ngOnInit(): void {
@@ -98,6 +105,15 @@ export class DashboardHoursComponent implements OnInit {
           },
         ],
       };
+    });
+
+    this.fiscalLoading$.subscribe(() => {
+      this.store.dispatch(
+        OverallHoursPieChartActions.loadOverallHoursPieChartData()
+      );
+      this.store.dispatch(
+        OverallHoursBarChartActions.loadOverallHoursBarChartData()
+      );
     });
   }
 }

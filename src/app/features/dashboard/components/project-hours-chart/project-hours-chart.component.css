@@ -11,6 +11,13 @@
   font-weight: 500;
 }
 
+.loading-container {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 ag-charts {
   /* min-width: 300px;  */
   width: auto; 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { PieChartData } from '../../../models/pie-chart-data.model';
 import { BarChartData } from '../../../models/bar-chart-data.model';
 import { EmployeeTableData } from '../../../models/employee-table-data.model';
@@ -18,11 +18,11 @@ import { PROJECT_SUMMARY_DATA } from '../../../mock-data/project-summary.mock';
 export class DataService {
 
   getPieChartData(): Observable<PieChartData[]> {
-    return of(PIE_CHART_DATA);
+    return of(PIE_CHART_DATA).pipe(delay(3000));
   }
 
   getBarChartData(): Observable<BarChartData[]> {
-    return of(BAR_CHART_DATA);
+    return of(BAR_CHART_DATA).pipe(delay(3000));
   }
 
   getEmployeeTableData(): Observable<EmployeeTableData[]> {
@@ -34,6 +34,6 @@ export class DataService {
   }
 
   getProjectSummayData(): Observable<ProjectDataType[]> {
-    return of (PROJECT_SUMMARY_DATA)
+    return of (PROJECT_SUMMARY_DATA).pipe(delay(3000));
   }
 }

@@ -3,7 +3,10 @@ import { AgCartesianChartOptions } from 'ag-charts-community';
 import { ProjectDataType } from '../../../../models/project-data.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectProjectBarChartData } from '../../../../store/selectors/project-hours-bar-chart.selectors';
+import {
+  selectProjectBarChartData,
+  selectProjectBarChartLoading,
+} from '../../../../store/selectors/project-hours-bar-chart.selectors';
 import { loadProjectHoursBarChartData } from '../../../../store/actions/project-hours-bar-chart.actions';
 import { AppState } from '../../../../store/store';
 
@@ -15,8 +18,9 @@ import { AppState } from '../../../../store/store';
 export class ProjectHoursChartComponent implements OnInit {
   projectData: ProjectDataType[] = [];
   projectHoursData$: Observable<ProjectDataType[]>;
+  projectHoursLoading$: Observable<boolean>;
 
-  screenWidth: number = window.innerWidth; 
+  screenWidth: number = window.innerWidth;
 
   projectHoursChartOptions: AgCartesianChartOptions = this.createChartOptions(
     []
@@ -24,6 +28,7 @@ export class ProjectHoursChartComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.projectHoursData$ = this.store.select(selectProjectBarChartData);
+    this.projectHoursLoading$ = this.store.select(selectProjectBarChartLoading);
   }
 
   ngOnInit(): void {

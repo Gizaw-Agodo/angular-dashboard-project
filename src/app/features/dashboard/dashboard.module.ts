@@ -12,6 +12,7 @@ import { SredSummaryComponent } from './components/sred-summary/sred-summary.com
 import { TimesheetSummaryComponent } from './components/timesheet-summary/timesheet-summary.component';
 import { EffectsModule } from '@ngrx/effects';
 import { OverallHoursPieChartEffects } from '../../store/effects/overall-hours-pie-chart.effects';
+import { LoaderComponent } from '../../core/components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { OverallHoursPieChartEffects } from '../../store/effects/overall-hours-p
     EmployeeSummaryComponent,
     SredSummaryComponent,
     TimesheetSummaryComponent,
+    LoaderComponent
   ],
   imports: [CommonModule, SharedModule, AgChartsModule, AgGridModule,EffectsModule.forFeature([OverallHoursPieChartEffects]),],
   exports: [DashboardComponent],

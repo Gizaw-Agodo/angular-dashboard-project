@@ -13,7 +13,7 @@ export class CommonEffects {
       this.actions$.pipe(
         ofType(CommonActions.setFiscalPeriod),
         switchMap((action) =>
-          timer(2000).pipe(
+          timer(1000).pipe(
             map(
               () => CommonActions.setFiscalSuccess({ ...action }) 
             ),
